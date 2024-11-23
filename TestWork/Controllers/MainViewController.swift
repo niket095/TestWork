@@ -11,6 +11,10 @@ class MainViewController: UIViewController {
     
     //MARK: - UI elements
     
+    private var cornerRadiusFlag = false
+    private let images = [Constants.Images.oneBackground, Constants.Images.twoBackground]
+    private var currentImageIndex = 0
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
@@ -20,38 +24,46 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
-    private let oneBackgroundImageView = UIImageView(image: Constants.Images.oneBackground,
-                                                     contentMode: .scaleAspectFill)
+    private let imageView = UIImageView()
     
-    private let twoBackgroundImageView = UIImageView(image: Constants.Images.twoBackground,
-                                                     contentMode: .scaleAspectFill)
     
-    private let logoImageView = UIImageView(image: Constants.Images.logoImage,
-                                            contentMode: .scaleAspectFit)
+    //    private let oneBackgroundImageView = UIImageView(image: Constants.Images.oneBackground,
+    //                                                     contentMode: .scaleAspectFill)
+    //
+    //    private let twoBackgroundImageView = UIImageView(image: Constants.Images.twoBackground,
+    //                                                     contentMode: .scaleAspectFill)
+    //
+    private let logoImageView = UIImageView(image: Constants.Images.logoImage, contentMode: .scaleAspectFill, borderColor: UIColor.white.cgColor, cornerRadius: 20, borderWidth: 5)
     
-    private let tableButton = UIButton(text: "Go to TableView", color: .green)
+    private let tableButton = UIButton(text: "Go to TableView", tcolor: .white, color: UIColor.tableButtonColor)
     
-    private let changeBackgroundButton = UIButton(text: "Change the Background", color: .brown)
+    private let changeBackgroundButton = UIButton(text: "Change the Background", tcolor: .white, color: UIColor.changeBackgroundButtonColor)
     
-    private let roundLogoButton = UIButton(text: "Round up the picture", color: .red)
+    private let roundLogoButton = UIButton(text: "Round up the picture", tcolor: .white, color: UIColor.roundLogoButtonColor)
     
-    private let smilesCalculatorButton = UIButton(text: "Smile + Smile", color: .blue)
+    private let smilesCalculatorButton = UIButton(text: "Smile + Smile", tcolor: .white, color: UIColor.smilesCalculatorButtonColor)
     
     //MARK: - Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBackground()
         setupView()
         setConstraints()
         setTargets()
     }
     
     //MARK: - Setup
+    private func setupBackground() {
+        imageView.image = UIImage(named: images[currentImageIndex])
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+    }
+    
     private func setupView() {
-        title = "Главный экран"
         
-        view.addSubview(oneBackgroundImageView)
-        view.addSubview(twoBackgroundImageView)
+        view.addSubview(imageView)
         view.addSubview(scrollView)
         
         scrollView.addSubview(logoImageView)
@@ -63,31 +75,71 @@ class MainViewController: UIViewController {
     
     //MARK: - Constraints
     private func setConstraints() {
-        backgroundImageView.frame = view.frame
         
         NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.widthAnchor.constraint(equalToConstant: view.frame.width),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            firstLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
-            firstLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstLabel.heightAnchor.constraint(equalToConstant: 200),
-            firstLabel.widthAnchor.constraint(equalToConstant: 300),
+            logoImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: 250),
+            logoImageView.widthAnchor.constraint(equalToConstant: 250),
             
-            firstButton.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 20),
-            firstButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstButton.heightAnchor.constraint(equalToConstant: 200),
-            firstButton.widthAnchor.constraint(equalToConstant: 300),
+            tableButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20),
+            tableButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableButton.heightAnchor.constraint(equalToConstant: 75),
+            tableButton.widthAnchor.constraint(equalToConstant: 250),
             
-            secondButton.topAnchor.constraint(equalTo: firstButton.bottomAnchor, constant: 20),
-            secondButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            secondButton.heightAnchor.constraint(equalToConstant: 200),
-            secondButton.widthAnchor.constraint(equalToConstant: 300),
-            secondButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+            changeBackgroundButton.topAnchor.constraint(equalTo: tableButton.bottomAnchor, constant: 20),
+            changeBackgroundButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            changeBackgroundButton.heightAnchor.constraint(equalToConstant: 75),
+            changeBackgroundButton.widthAnchor.constraint(equalToConstant: 250),
+            
+            roundLogoButton.topAnchor.constraint(equalTo: changeBackgroundButton.bottomAnchor, constant: 20),
+            roundLogoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            roundLogoButton.heightAnchor.constraint(equalToConstant: 75),
+            roundLogoButton.widthAnchor.constraint(equalToConstant: 250),
+            
+            smilesCalculatorButton.topAnchor.constraint(equalTo: roundLogoButton.bottomAnchor, constant: 20),
+            smilesCalculatorButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            smilesCalculatorButton.heightAnchor.constraint(equalToConstant: 75),
+            smilesCalculatorButton.widthAnchor.constraint(equalToConstant: 250),
+            smilesCalculatorButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
 }
-// ghbdtn
-//gfhdhdfhfdh
+//MARK: - Targets
 
+extension MainViewController {
+    private func setTargets() {
+        tableButton.addTarget(self, action: #selector(clickToGoVCTable), for: .touchUpInside)
+        changeBackgroundButton.addTarget(self, action: #selector(changeBackground), for: .touchUpInside)
+        roundLogoButton.addTarget(self, action: #selector(roundButtonAction), for: .touchUpInside)
+        //smilesCalculatorButton.addTarget(self, action: #selector(someAlertButtonAction), for: .touchUpInside)
+        
+    }
+    
+        @objc private func clickToGoVCTable() {
+            let vc = CollectionViewController()
+            navigationItem.backButtonTitle = ""
+    
+            navigationController?.pushViewController(vc, animated: false)
+        }
+    
+    @objc func changeBackground() {
+        currentImageIndex = (currentImageIndex + 1) % images.count // Переключение индекса
+        imageView.image = UIImage(named: images[currentImageIndex]) // Изменение изображения
+    }
+    
+    @objc private func roundButtonAction(sender: UIButton) {
+        logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 0
+        cornerRadiusFlag.toggle()
+    }
+    
+}

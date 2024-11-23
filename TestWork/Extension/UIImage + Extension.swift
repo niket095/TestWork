@@ -14,7 +14,7 @@ extension UIImageView {
         
         self.image = UIImage(named: image)
         self.contentMode = contentMode
-        self.clipsToBounds = true
+        //self.clipsToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -32,6 +32,14 @@ extension UIImageView {
         self.layer.cornerRadius = cornerRadius
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    convenience init(arnames: String) {
+        self.init()
+        
+        self.image = UIImage(named: arnames)
+        self.contentMode = .scaleAspectFill
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

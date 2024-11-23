@@ -9,15 +9,15 @@ import UIKit
 
 extension UIButton {
     
-    convenience init(text: String, color: UIColor) {
+    convenience init(text: String, tcolor: UIColor, color: UIColor) {
         self.init(type: .system)
         
         self.setTitle(text, for: .normal)
-        self.tintColor = .black
+        self.tintColor = tcolor
         self.backgroundColor = color
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 1
-        self.layer.cornerRadius = 10
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 5
+        self.layer.cornerRadius = 20
         self.titleLabel?.numberOfLines = 2
         self.clipsToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
