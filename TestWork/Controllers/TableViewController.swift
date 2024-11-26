@@ -9,21 +9,19 @@ import UIKit
 
 class TableViewController: UIViewController {
     
-    private let tableView: UITableView = {
+    private let rows = Array(repeating: "Сомнительный текст", count: 10)
+    
+    // Сохраняем экземпляр tableView в переменной класса
+    private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .singleLine
-        tableView.separatorColor = .red //цвет сепаратора
-        tableView.separatorInset.right = 16 //отступ справа сепааратора
+        tableView.separatorColor = .black
+        tableView.separatorInset.bottom = 10
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .blue
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        animationTableView()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,52 +30,32 @@ class TableViewController: UIViewController {
         setupTableView()
     }
     
-    private func animationTableView() {
-        tableView.reloadData()
-        
-        let cells = tableView.visibleCells
-        let tableHeight = tableView.bounds.height
-        var delay: Double = 0 //задержка по выходу каждой ячейки
-        
-        for cell in cells {
-            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
-            
-            UIView.animate(withDuration: 1.5,
-                           delay: delay * 0.5,
-                           usingSpringWithDamping: 0.8,
-                           initialSpringVelocity: 1.2,
-                           options: .autoreverse) {
-                cell.transform = CGAffineTransform.identity
-            }
-            delay += 1
-        }
-    }
-    
     private func setupViews() {
-        title = "Таблица"
-        view.backgroundColor = .white
+        title = "Таблица с сомнительным текстом"
+        view.backgroundColor = .blue
         
         view.addSubview(tableView)
         
+        // Установка фрейма для tableView
         tableView.frame = view.bounds
-        
     }
     
-    
     private func setupTableView() {
+        // Установка делегата и источника данных
         tableView.delegate = self
         tableView.dataSource = self
-        // cтандартная ячейка
-        // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        // кастомная ячейка
-        tableView.register(FirstTableViewCell.self, forCellReuseIdentifier: FirstTableViewCell.cellID)
     }
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
-    //количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return rows.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = "Ячейка №\(indexPath.row + 1)" // Изменил на indexPath.row + 1 для более удобного отображения
+        cell.textLabel?.textColor = .blue // Установка цвета текста
+        return cell
     }
 }

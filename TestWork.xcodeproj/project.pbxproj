@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE28FDFE2CF1C50700263183 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28FDFD2CF1C50700263183 /* UIColor + Extension.swift */; };
 		CE28FE002CF253EB00263183 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28FDFF2CF253EB00263183 /* TableViewController.swift */; };
-		CE28FE032CF2599200263183 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28FE022CF2599200263183 /* TableViewCell.swift */; };
+		CE28FE052CF35F1C00263183 /* UILable + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28FE042CF35F1C00263183 /* UILable + Extension.swift */; };
+		CE28FE072CF39A0900263183 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE28FE062CF39A0900263183 /* CalculatorViewController.swift */; };
 		CE29D72D2CEBB71200203A9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29D72C2CEBB71200203A9C /* AppDelegate.swift */; };
 		CE29D72F2CEBB71200203A9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29D72E2CEBB71200203A9C /* SceneDelegate.swift */; };
 		CE29D7312CEBB71200203A9C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE29D7302CEBB71200203A9C /* MainViewController.swift */; };
@@ -23,7 +24,8 @@
 /* Begin PBXFileReference section */
 		CE28FDFD2CF1C50700263183 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		CE28FDFF2CF253EB00263183 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		CE28FE022CF2599200263183 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		CE28FE042CF35F1C00263183 /* UILable + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILable + Extension.swift"; sourceTree = "<group>"; };
+		CE28FE062CF39A0900263183 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		CE29D7292CEBB71200203A9C /* TestWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE29D72C2CEBB71200203A9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE29D72E2CEBB71200203A9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,14 +49,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE28FE012CF2596600263183 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				CE28FE022CF2599200263183 /* TableViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		CE29D7202CEBB71200203A9C = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +92,7 @@
 			children = (
 				CE29D7302CEBB71200203A9C /* MainViewController.swift */,
 				CE28FDFF2CF253EB00263183 /* TableViewController.swift */,
-				CE28FE012CF2596600263183 /* Cell */,
+				CE28FE062CF39A0900263183 /* CalculatorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +120,7 @@
 				CE29D7462CEBC14100203A9C /* UIImage + Extension.swift */,
 				CE29D7492CEBC33C00203A9C /* UIButton + Extension.swift */,
 				CE28FDFD2CF1C50700263183 /* UIColor + Extension.swift */,
+				CE28FE042CF35F1C00263183 /* UILable + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -200,10 +195,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE28FE072CF39A0900263183 /* CalculatorViewController.swift in Sources */,
 				CE28FDFE2CF1C50700263183 /* UIColor + Extension.swift in Sources */,
 				CE29D7312CEBB71200203A9C /* MainViewController.swift in Sources */,
+				CE28FE052CF35F1C00263183 /* UILable + Extension.swift in Sources */,
 				CE29D72D2CEBB71200203A9C /* AppDelegate.swift in Sources */,
-				CE28FE032CF2599200263183 /* TableViewCell.swift in Sources */,
 				CE28FE002CF253EB00263183 /* TableViewController.swift in Sources */,
 				CE29D72F2CEBB71200203A9C /* SceneDelegate.swift in Sources */,
 				CE29D7472CEBC14100203A9C /* UIImage + Extension.swift in Sources */,

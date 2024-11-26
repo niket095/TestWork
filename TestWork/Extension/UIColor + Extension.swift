@@ -13,6 +13,8 @@ extension UIColor {
     static let changeBackgroundButtonColor = #colorLiteral(red: 0.6982614994, green: 0.4535831809, blue: 0.3056790829, alpha: 1)
     static let roundLogoButtonColor = #colorLiteral(red: 0.5887845159, green: 0.146730721, blue: 0.1904246211, alpha: 1)
     static let smilesCalculatorButtonColor = #colorLiteral(red: 0.1575349867, green: 0.3363748789, blue: 0.4053038359, alpha: 1)
+    static let smilesButtonColor = #colorLiteral(red: 0.09649112076, green: 0.1316310167, blue: 0.3309704959, alpha: 1)
+    static let smilesBackgroundColor = #colorLiteral(red: 0.04643719643, green: 0.0009110872052, blue: 0.1651850641, alpha: 1)
     
 }
 

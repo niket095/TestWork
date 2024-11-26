@@ -26,20 +26,13 @@ class MainViewController: UIViewController {
     
     private let imageView = UIImageView()
     
-    
-    //    private let oneBackgroundImageView = UIImageView(image: Constants.Images.oneBackground,
-    //                                                     contentMode: .scaleAspectFill)
-    //
-    //    private let twoBackgroundImageView = UIImageView(image: Constants.Images.twoBackground,
-    //                                                     contentMode: .scaleAspectFill)
-    //
     private let logoImageView = UIImageView(image: Constants.Images.logoImage, contentMode: .scaleAspectFill, borderColor: UIColor.white.cgColor, cornerRadius: 20, borderWidth: 5)
     
     private let tableButton = UIButton(text: "Go to TableView", tcolor: .white, color: UIColor.tableButtonColor)
     
     private let changeBackgroundButton = UIButton(text: "Change the Background", tcolor: .white, color: UIColor.changeBackgroundButtonColor)
     
-    private let roundLogoButton = UIButton(text: "Round up the picture", tcolor: .white, color: UIColor.roundLogoButtonColor)
+    private let roundLogoButton = UIButton(text: "Round up the picture", tcolor: .white, color: UIColor.roundLogoButtonColor, cbounds: true)
     
     private let smilesCalculatorButton = UIButton(text: "Smile + Smile", tcolor: .white, color: UIColor.smilesCalculatorButtonColor)
     
@@ -121,25 +114,34 @@ extension MainViewController {
         tableButton.addTarget(self, action: #selector(clickToGoVCTable), for: .touchUpInside)
         changeBackgroundButton.addTarget(self, action: #selector(changeBackground), for: .touchUpInside)
         roundLogoButton.addTarget(self, action: #selector(roundButtonAction), for: .touchUpInside)
-        //smilesCalculatorButton.addTarget(self, action: #selector(someAlertButtonAction), for: .touchUpInside)
+        smilesCalculatorButton.addTarget(self, action: #selector(clickToGoVCCalculator), for: .touchUpInside)
         
     }
     
-        @objc private func clickToGoVCTable() {
-            let vc = CollectionViewController()
-            navigationItem.backButtonTitle = ""
+    @objc private func clickToGoVCTable() {
+        let vc = TableViewController()
+        navigationItem.backButtonTitle = ""
+        
+        navigationController?.pushViewController(vc, animated: false)
+    }
     
-            navigationController?.pushViewController(vc, animated: false)
-        }
-    
-    @objc func changeBackground() {
+    @objc private func changeBackground() {
         currentImageIndex = (currentImageIndex + 1) % images.count // Переключение индекса
         imageView.image = UIImage(named: images[currentImageIndex]) // Изменение изображения
     }
     
     @objc private func roundButtonAction(sender: UIButton) {
-        logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 0
-        cornerRadiusFlag.toggle()
+            cornerRadiusFlag.toggle()
+            logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 0
+            logoImageView.layer.masksToBounds = cornerRadiusFlag
     }
+    
+    @objc private func clickToGoVCCalculator() {
+            let calculatorVC = CalculatorViewController()
+            let navigationController = UINavigationController(rootViewController: calculatorVC)
+            navigationController.modalPresentationStyle = .formSheet
+            navigationController.modalTransitionStyle = .coverVertical
+            present(navigationController, animated: true, completion: nil)
+        }
     
 }
