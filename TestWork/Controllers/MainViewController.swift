@@ -132,8 +132,7 @@ extension MainViewController {
     
     @objc private func roundButtonAction(sender: UIButton) {
             cornerRadiusFlag.toggle()
-            logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 0
-            logoImageView.layer.masksToBounds = cornerRadiusFlag
+            logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 20
     }
     
     @objc private func clickToGoVCCalculator() {
