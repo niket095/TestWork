@@ -15,6 +15,7 @@ extension UIColor {
     static let smilesCalculatorButtonColor = #colorLiteral(red: 0.1575349867, green: 0.3363748789, blue: 0.4053038359, alpha: 1)
     static let smilesButtonColor = #colorLiteral(red: 0.09649112076, green: 0.1316310167, blue: 0.3309704959, alpha: 1)
     static let smilesBackgroundColor = #colorLiteral(red: 0.04643719643, green: 0.0009110872052, blue: 0.1651850641, alpha: 1)
+    static let tableBackgroundTableView = #colorLiteral(red: 0.1464731097, green: 0.198605895, blue: 0.5032779574, alpha: 1)
     
 }
 

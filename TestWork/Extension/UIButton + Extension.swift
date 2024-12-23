@@ -38,5 +38,17 @@ extension UIButton {
         self.clipsToBounds = cbounds
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    convenience init(sImage: String) {
+        self.init(type: .system)
+        
+        self.tintColor = .black
+        self.setImage(UIImage(systemName: sImage), for: .normal)
+        self.layer.cornerRadius = 10
+        self.backgroundColor = .systemBackground
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 1
+        self.translatesAutoresizingMaskIntoConstraints = false
+        }
 }
 

@@ -9,6 +9,11 @@ import UIKit
 
 class CalculatorViewController: UIViewController{
     
+    private let titleLabel = UILabel(text: "КАЛЬКУЛЯТОР СМАЙЛОВ",
+                                     font: .systemFont(ofSize: 20, weight: .bold),
+                                     color: .white,
+                                     line: 1)
+    
     private let smileLabel = UILabel(text: "🙂 = 1😂 = 2😘 = 3😁 = 4😎 = 5🤪 = 6🥸 = 7😉 = 8🥰 = 9🥳 = 0",
                                      font: .systemFont(ofSize: 30, weight: .bold),
                                      color: .white,
@@ -39,6 +44,7 @@ class CalculatorViewController: UIViewController{
     }()
     
     private let totalButton = UIButton(text: "Посчитать", tcolor: .white, color: UIColor.smilesButtonColor)
+    private let backButton = UIButton(sImage: "x.circle.fill")
     
     //MARK: - Life cicle
     override func viewDidLoad() {
@@ -46,6 +52,7 @@ class CalculatorViewController: UIViewController{
         setupBackground()
         setupView()
         setConstraints()
+        setTarget()
     }
     
     //MARK: - Setup
@@ -54,20 +61,62 @@ class CalculatorViewController: UIViewController{
     }
     
     private func setupView() {
-        title = "КАЛЬКУЛЯТОР СМАЙЛОВ"
         
+        view.addSubview(titleLabel)
         view.addSubview(smileLabel)
         view.addSubview(separatorView)
         view.addSubview(labelTextField)
         view.addSubview(totalButton)
     }
     
+    func decodeSmiles(smiles: String) -> Int {
+        var total = 0
+        
+        for char in smiles {
+            switch char {
+            case "🙂":
+                total += 1
+            case "😂":
+                total += 2
+            case "😘":
+                total += 3
+            case "😁":
+                total += 4
+            case "😎":
+                total += 5
+            case "🤪":
+                total += 6
+            case "🥸":
+                total += 7
+            case "😉":
+                total += 8
+            case "🥰":
+                total += 9
+            case "🥳":
+                total += 0
+            default:
+                break
+            }
+        }
+        return total
+    }
+    //print(decodeSmiles(smiles: "😎🤪"))
+    
+    
     //MARK: - Constraints
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
             
-            smileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 200),
+            
+            //backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            //backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 5),
+
+            
+            smileLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             smileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             smileLabel.heightAnchor.constraint(equalToConstant: 200),
             smileLabel.widthAnchor.constraint(equalToConstant: 50),
@@ -88,6 +137,23 @@ class CalculatorViewController: UIViewController{
             totalButton.heightAnchor.constraint(equalToConstant: 75),
             totalButton.widthAnchor.constraint(equalToConstant: 250)
         ])
+    }
+}
+
+extension CalculatorViewController{
+    private func setTarget() {
+        totalButton.addTarget(self, action: #selector(calculateTheAmount), for: .touchUpInside)
+    }
+    
+    @objc private func calculateTheAmount() {
+        guard let inputText = labelTextField.text else { return }
+        
+        let sum = decodeSmiles(smiles: inputText)
+        
+        totalButton.setTitle("\(sum)", for: .normal)
+        
+        print(sum)
+        print(inputText)
     }
 }
 
