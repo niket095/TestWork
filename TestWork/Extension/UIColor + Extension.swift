@@ -9,13 +9,13 @@ import UIKit
 
 extension UIColor {
     
-    static let tableButtonColor = #colorLiteral(red: 0.2388021946, green: 0.3417113423, blue: 0.2960258424, alpha: 1)
-    static let changeBackgroundButtonColor = #colorLiteral(red: 0.6982614994, green: 0.4535831809, blue: 0.3056790829, alpha: 1)
-    static let roundLogoButtonColor = #colorLiteral(red: 0.5887845159, green: 0.146730721, blue: 0.1904246211, alpha: 1)
-    static let smilesCalculatorButtonColor = #colorLiteral(red: 0.1575349867, green: 0.3363748789, blue: 0.4053038359, alpha: 1)
-    static let smilesButtonColor = #colorLiteral(red: 0.09649112076, green: 0.1316310167, blue: 0.3309704959, alpha: 1)
-    static let smilesBackgroundColor = #colorLiteral(red: 0.04643719643, green: 0.0009110872052, blue: 0.1651850641, alpha: 1)
-    static let tableBackgroundTableView = #colorLiteral(red: 0.1464731097, green: 0.198605895, blue: 0.5032779574, alpha: 1)
+    static let tableButtonColor = #colorLiteral(red: 0.2392156863, green: 0.3411764706, blue: 0.2941176471, alpha: 1) //3D574B
+    static let changeBackgroundButtonColor = #colorLiteral(red: 0.6980392157, green: 0.4549019608, blue: 0.3058823529, alpha: 1) //B2744E
+    static let roundLogoButtonColor = #colorLiteral(red: 0.5882352941, green: 0.1450980392, blue: 0.1921568627, alpha: 1) //962531
+    static let smilesCalculatorButtonColor = #colorLiteral(red: 0.1568627451, green: 0.337254902, blue: 0.4039215686, alpha: 1) //285667
+    static let smilesButtonColor = #colorLiteral(red: 0.09803921569, green: 0.1333333333, blue: 0.3294117647, alpha: 1) //192254
+    static let smilesBackgroundColor = #colorLiteral(red: 0.04705882353, green: 0, blue: 0.1647058824, alpha: 1) //0C002A
+    static let tableBackgroundTableView = #colorLiteral(red: 0.1450980392, green: 0.2, blue: 0.5019607843, alpha: 1) //253380
     
 }
 

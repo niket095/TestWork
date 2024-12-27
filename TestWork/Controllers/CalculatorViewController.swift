@@ -27,7 +27,7 @@ class CalculatorViewController: UIViewController{
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-        
+    
     private let labelTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect //cтиль рамки
@@ -67,6 +67,7 @@ class CalculatorViewController: UIViewController{
         view.addSubview(separatorView)
         view.addSubview(labelTextField)
         view.addSubview(totalButton)
+        view.addSubview(backButton)
     }
     
     func decodeSmiles(smiles: String) -> Int {
@@ -100,8 +101,6 @@ class CalculatorViewController: UIViewController{
         }
         return total
     }
-    //print(decodeSmiles(smiles: "😎🤪"))
-    
     
     //MARK: - Constraints
     private func setConstraints() {
@@ -112,9 +111,11 @@ class CalculatorViewController: UIViewController{
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
             
-            //backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            //backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 5),
-
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            backButton.heightAnchor.constraint(equalToConstant: 30),
+            backButton.widthAnchor.constraint(equalToConstant: 30),
+            
             
             smileLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             smileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -143,6 +144,7 @@ class CalculatorViewController: UIViewController{
 extension CalculatorViewController{
     private func setTarget() {
         totalButton.addTarget(self, action: #selector(calculateTheAmount), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backMainViewController), for: .touchUpInside)
     }
     
     @objc private func calculateTheAmount() {
@@ -154,6 +156,11 @@ extension CalculatorViewController{
         
         print(sum)
         print(inputText)
+    }
+    
+    @objc private func backMainViewController() {
+        self.dismiss(animated: true, completion: nil)
+        print("кнопка отрабатывает")
     }
 }
 

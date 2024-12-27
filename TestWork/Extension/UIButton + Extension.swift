@@ -42,10 +42,10 @@ extension UIButton {
     convenience init(sImage: String) {
         self.init(type: .system)
         
-        self.tintColor = .black
+        self.tintColor = .white
         self.setImage(UIImage(systemName: sImage), for: .normal)
         self.layer.cornerRadius = 10
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .smilesBackgroundColor
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 1
         self.translatesAutoresizingMaskIntoConstraints = false
