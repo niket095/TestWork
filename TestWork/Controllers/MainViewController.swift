@@ -28,13 +28,17 @@ class MainViewController: UIViewController {
     
     private let logoImageView = UIImageView(image: Constants.Images.logoImage, contentMode: .scaleAspectFill, borderColor: UIColor.white.cgColor, cornerRadius: 20, borderWidth: 5)
     
-    private let tableButton = UIButton(text: "Go to TableView", tcolor: .white, color: UIColor.tableButtonColor)
+    private let tableButton = UIButton(text: "Go to TableView",
+                                       colorBackground: UIColor.tableButtonColor)
     
-    private let changeBackgroundButton = UIButton(text: "Change the Background", tcolor: .white, color: UIColor.changeBackgroundButtonColor)
+    private let changeBackgroundButton = UIButton(text: "Change the Background",
+                                                  colorBackground: UIColor.changeBackgroundButtonColor)
     
-    private let roundLogoButton = UIButton(text: "Round up the picture", tcolor: .white, color: UIColor.roundLogoButtonColor, cbounds: true)
+    private let roundLogoButton = UIButton(text: "Round up the picture",
+                                           colorBackground: UIColor.roundLogoButtonColor)
     
-    private let smilesCalculatorButton = UIButton(text: "Smile + Smile", tcolor: .white, color: UIColor.smilesCalculatorButtonColor)
+    private let smilesCalculatorButton = UIButton(text: "Smile + Smile",
+                                                  colorBackground: UIColor.smilesCalculatorButtonColor)
     
     //MARK: - Life cicle
     override func viewDidLoad() {
@@ -120,9 +124,8 @@ extension MainViewController {
     
     @objc private func clickToGoVCTable() {
         let vc = TableViewController()
-        navigationItem.backButtonTitle = ""
-        
-        navigationController?.pushViewController(vc, animated: false)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     @objc private func changeBackground() {
@@ -137,10 +140,7 @@ extension MainViewController {
     
     @objc private func clickToGoVCCalculator() {
             let calculatorVC = CalculatorViewController()
-            let navigationController = UINavigationController(rootViewController: calculatorVC)
-            navigationController.modalPresentationStyle = .formSheet
-            navigationController.modalTransitionStyle = .coverVertical
-            present(navigationController, animated: true, completion: nil)
+            present(calculatorVC, animated: true, completion: nil)
         }
     
 }

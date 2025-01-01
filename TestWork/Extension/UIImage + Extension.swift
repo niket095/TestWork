@@ -14,7 +14,6 @@ extension UIImageView {
         
         self.image = UIImage(named: image)
         self.contentMode = contentMode
-        //self.clipsToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

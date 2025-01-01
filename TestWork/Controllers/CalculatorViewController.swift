@@ -43,8 +43,11 @@ class CalculatorViewController: UIViewController{
         return textField
     }()
     
-    private let totalButton = UIButton(text: "Посчитать", tcolor: .white, color: UIColor.smilesButtonColor)
-    private let backButton = UIButton(sImage: "x.circle.fill")
+    private let totalButton = UIButton(text: "Посчитать",
+                                       colorBackground: UIColor.smilesButtonColor)
+    private let backButton = UIButton(colorTint: .white,
+                                      image: "x.circle.fill",
+                                      colorBorder: UIColor.smilesBackgroundColor.cgColor)
     
     //MARK: - Life cicle
     override func viewDidLoad() {
@@ -111,7 +114,7 @@ class CalculatorViewController: UIViewController{
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
             
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             backButton.heightAnchor.constraint(equalToConstant: 30),
             backButton.widthAnchor.constraint(equalToConstant: 30),
