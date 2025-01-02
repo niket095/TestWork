@@ -10,10 +10,8 @@ import UIKit
 class MainViewController: UIViewController {
     
     //MARK: - UI elements
-    
+    private var backgroundImageFlag = false
     private var cornerRadiusFlag = false
-    private let images = [Constants.Images.oneBackground, Constants.Images.twoBackground]
-    private var currentImageIndex = 0
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -26,7 +24,11 @@ class MainViewController: UIViewController {
     
     private let imageView = UIImageView()
     
-    private let logoImageView = UIImageView(image: Constants.Images.logoImage, contentMode: .scaleAspectFill, borderColor: UIColor.white.cgColor, cornerRadius: 20, borderWidth: 5)
+    private let logoImageView = UIImageView(image: Constants.Images.logoImage,
+                                            contentMode: .scaleAspectFill,
+                                            borderColor: UIColor.white.cgColor,
+                                            cornerRadius: 20,
+                                            borderWidth: 5)
     
     private let tableButton = UIButton(text: "Go to TableView",
                                        colorBackground: UIColor.tableButtonColor)
@@ -52,14 +54,13 @@ class MainViewController: UIViewController {
     
     //MARK: - Setup
     private func setupBackground() {
-        imageView.image = UIImage(named: images[currentImageIndex])
+        imageView.image = UIImage(named: Constants.Images.oneBackground)
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
+        imageView.frame = view.bounds
     }
     
     private func setupView() {
-        
         view.addSubview(imageView)
         view.addSubview(scrollView)
         
@@ -72,13 +73,7 @@ class MainViewController: UIViewController {
     
     //MARK: - Constraints
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.widthAnchor.constraint(equalToConstant: view.frame.width),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -112,14 +107,12 @@ class MainViewController: UIViewController {
     }
 }
 //MARK: - Targets
-
 extension MainViewController {
     private func setTargets() {
         tableButton.addTarget(self, action: #selector(clickToGoVCTable), for: .touchUpInside)
         changeBackgroundButton.addTarget(self, action: #selector(changeBackground), for: .touchUpInside)
         roundLogoButton.addTarget(self, action: #selector(roundButtonAction), for: .touchUpInside)
         smilesCalculatorButton.addTarget(self, action: #selector(clickToGoVCCalculator), for: .touchUpInside)
-        
     }
     
     @objc private func clickToGoVCTable() {
@@ -129,18 +122,17 @@ extension MainViewController {
     }
     
     @objc private func changeBackground() {
-        currentImageIndex = (currentImageIndex + 1) % images.count // Переключение индекса
-        imageView.image = UIImage(named: images[currentImageIndex]) // Изменение изображения
+        backgroundImageFlag.toggle()
+        imageView.image = UIImage(named: backgroundImageFlag == false ? Constants.Images.oneBackground : Constants.Images.twoBackground)
     }
     
     @objc private func roundButtonAction(sender: UIButton) {
-            cornerRadiusFlag.toggle()
-            logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 20
+        cornerRadiusFlag.toggle()
+        logoImageView.layer.cornerRadius = cornerRadiusFlag ? logoImageView.frame.size.width / 2 : 20
     }
     
     @objc private func clickToGoVCCalculator() {
-            let calculatorVC = CalculatorViewController()
-            present(calculatorVC, animated: true, completion: nil)
-        }
-    
+        let calculatorVC = CalculatorViewController()
+        present(calculatorVC, animated: true, completion: nil)
+    }
 }

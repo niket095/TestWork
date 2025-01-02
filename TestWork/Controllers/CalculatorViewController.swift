@@ -9,6 +9,7 @@ import UIKit
 
 class CalculatorViewController: UIViewController{
     
+    //MARK: - UI elements
     private let titleLabel = UILabel(text: "КАЛЬКУЛЯТОР СМАЙЛОВ",
                                      font: .systemFont(ofSize: 20, weight: .bold),
                                      color: .white,
@@ -30,7 +31,7 @@ class CalculatorViewController: UIViewController{
     
     private let labelTextField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect //cтиль рамки
+        textField.borderStyle = .roundedRect
         textField.placeholder = "Укажите значение в формате 🥸🙂😂😁"
         textField.returnKeyType = .done
         textField.clearButtonMode = .always
@@ -45,6 +46,7 @@ class CalculatorViewController: UIViewController{
     
     private let totalButton = UIButton(text: "Посчитать",
                                        colorBackground: UIColor.smilesButtonColor)
+    
     private let backButton = UIButton(colorTint: .white,
                                       image: "x.circle.fill",
                                       colorBorder: UIColor.smilesBackgroundColor.cgColor)
@@ -52,6 +54,7 @@ class CalculatorViewController: UIViewController{
     //MARK: - Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupBackground()
         setupView()
         setConstraints()
@@ -61,16 +64,18 @@ class CalculatorViewController: UIViewController{
     //MARK: - Setup
     private func setupBackground() {
         view.backgroundColor = UIColor.smilesBackgroundColor
+        view.alpha = 0.97
     }
     
     private func setupView() {
-        
         view.addSubview(titleLabel)
         view.addSubview(smileLabel)
         view.addSubview(separatorView)
         view.addSubview(labelTextField)
         view.addSubview(totalButton)
         view.addSubview(backButton)
+        
+        labelTextField.delegate = self
     }
     
     func decodeSmiles(smiles: String) -> Int {
@@ -107,9 +112,7 @@ class CalculatorViewController: UIViewController{
     
     //MARK: - Constraints
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
-            
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
@@ -118,7 +121,6 @@ class CalculatorViewController: UIViewController{
             backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             backButton.heightAnchor.constraint(equalToConstant: 30),
             backButton.widthAnchor.constraint(equalToConstant: 30),
-            
             
             smileLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             smileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -143,7 +145,7 @@ class CalculatorViewController: UIViewController{
         ])
     }
 }
-
+//MARK: - Targets
 extension CalculatorViewController{
     private func setTarget() {
         totalButton.addTarget(self, action: #selector(calculateTheAmount), for: .touchUpInside)
@@ -156,14 +158,17 @@ extension CalculatorViewController{
         let sum = decodeSmiles(smiles: inputText)
         
         totalButton.setTitle("\(sum)", for: .normal)
-        
-        print(sum)
-        print(inputText)
     }
     
     @objc private func backMainViewController() {
         self.dismiss(animated: true, completion: nil)
-        print("кнопка отрабатывает")
     }
 }
 
+//MARK: - Extension textField
+extension CalculatorViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.labelTextField.resignFirstResponder()
+        return true
+    }
+}

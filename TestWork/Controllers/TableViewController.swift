@@ -9,18 +9,18 @@ import UIKit
 
 class TableViewController: UIViewController {
     
+    //MARK: - UI elements
     private let rows = Array(repeating: "", count: 30)
     
-    private let backButton = UIButton(colorTint: .black,
+    private let backButton = UIButton(colorTint: .systemBlue,
                                       image: "chevron.backward",
                                       colorBorder: UIColor.tableBackgroundTableView.cgColor)
     
     private let titleLabel = UILabel(text: "Таблица с сомнительным текстом",
-                                     font: .systemFont(ofSize: 20, weight: .bold),
-                                     color: .white,
+                                     font: .systemFont(ofSize: 25, weight: .bold),
+                                     color: .black,
                                      line: 1)
     
-    // Сохраняем экземпляр tableView в переменной класса
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .singleLine
@@ -33,9 +33,9 @@ class TableViewController: UIViewController {
         return tableView
     }()
     
+    //MARK: - Life cicle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         animationTableView()
     }
     
@@ -48,20 +48,16 @@ class TableViewController: UIViewController {
         setTarget()
     }
     
+    //MARK: - Setup
     private func setupViews() {
-        //title = "Таблица с сомнительным текстом"
         view.backgroundColor = .tableBackgroundTableView
         
         view.addSubview(tableView)
         view.addSubview(backButton)
         view.addSubview(titleLabel)
-        
-        // Установка фрейма для tableView
-        //tableView.frame = view.bounds
     }
     
     private func setupTableView() {
-        // Установка делегата и источника данных
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -71,7 +67,7 @@ class TableViewController: UIViewController {
         
         let cells = tableView.visibleCells
         let tableHeight = tableView.bounds.height
-        var delay: Double = 0 //задержка по выходу каждой ячейки
+        var delay: Double = 0
         
         for cell in cells {
             cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
@@ -92,7 +88,7 @@ class TableViewController: UIViewController {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.widthAnchor.constraint(equalToConstant: 200),
+            titleLabel.widthAnchor.constraint(equalToConstant: 300),
             
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -106,28 +102,29 @@ class TableViewController: UIViewController {
         ])
     }
 }
+
+//MARK: - Extension table
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "Сомнительный текст" // Изменил на indexPath.row + 1 для более удобного отображения
-        cell.textLabel?.textColor = .white // Установка цвета текста
+        cell.textLabel?.text = "Сомнительный текст"
+        cell.textLabel?.textColor = .white
         cell.backgroundColor = .tableBackgroundTableView
         return cell
     }
 }
 
+//MARK: - Target
 extension TableViewController {
     private func setTarget() {
         backButton.addTarget(self, action: #selector(backMainViewController), for: .touchUpInside)
     }
     
-        @objc private func backMainViewController() {
-            self.dismiss(animated: true, completion: nil)
-            print("кнопка отрабатывает")
-        }
+    @objc private func backMainViewController() {
+        self.dismiss(animated: true, completion: nil)
     }
-
+}
