@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
-    private let imageView = UIImageView()
+    private let backgroundImage = UIImageView(image: Constants.Images.oneBackground)
     
     private let logoImageView = UIImageView(image: Constants.Images.logoImage,
                                             contentMode: .scaleAspectFill,
@@ -46,22 +46,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBackground()
         setupView()
         setConstraints()
         setTargets()
+        
+        backgroundImage.frame = view.bounds
     }
     
     //MARK: - Setup
-    private func setupBackground() {
-        imageView.image = UIImage(named: Constants.Images.oneBackground)
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.frame = view.bounds
-    }
-    
     private func setupView() {
-        view.addSubview(imageView)
+        view.addSubview(backgroundImage)
         view.addSubview(scrollView)
         
         scrollView.addSubview(logoImageView)
@@ -123,7 +117,7 @@ extension MainViewController {
     
     @objc private func changeBackground() {
         backgroundImageFlag.toggle()
-        imageView.image = UIImage(named: backgroundImageFlag == false ? Constants.Images.oneBackground : Constants.Images.twoBackground)
+        backgroundImage.image = UIImage(named: backgroundImageFlag == false ? Constants.Images.oneBackground : Constants.Images.twoBackground)
     }
     
     @objc private func roundButtonAction(sender: UIButton) {

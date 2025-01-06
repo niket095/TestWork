@@ -29,4 +29,13 @@ extension UIImageView {
         self.layer.borderWidth = borderWidth
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    //Background
+    convenience init(image: String) {
+        self.init()
+        
+        self.image = UIImage(named: image)
+        self.contentMode = .scaleAspectFill
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
 }

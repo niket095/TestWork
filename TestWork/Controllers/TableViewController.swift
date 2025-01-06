@@ -10,8 +10,6 @@ import UIKit
 class TableViewController: UIViewController {
     
     //MARK: - UI elements
-    private let rows = Array(repeating: "", count: 30)
-    
     private let backButton = UIButton(colorTint: .systemBlue,
                                       image: "chevron.backward",
                                       colorBorder: UIColor.tableBackgroundTableView.cgColor)
@@ -106,7 +104,7 @@ class TableViewController: UIViewController {
 //MARK: - Extension table
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count
+        30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
